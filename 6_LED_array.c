@@ -16,7 +16,7 @@
 int main(void)
 {
 	uint8_t bit_pos = 2;
-    uint8_t state = 0x00u;
+        uint8_t state = 0x00u;
 
 	SysCtlClockSet(SYSCTL_SYSDIV_4|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
@@ -31,17 +31,20 @@ int main(void)
 			// Delay for a bit
 			SysCtlDelay(1000000);
 			// Cycle through array of LEDs
-			if (bit_pos == 128) {
+			if (bit_pos == 128) 
+			{
 				bit_pos = 2;
 				state = 0x01u;
 			}
-			else {
+			else
+			{
 				bit_pos = bit_pos*2;
 			}
 
 		}
 
-		if(state == 0x01u){
+		if(state == 0x01u)
+		{
 			GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, 0xFCu);
 			SysCtlDelay(2000000);
 			state = 0x00u;
